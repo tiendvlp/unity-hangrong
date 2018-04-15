@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Data;
 public class EyesInfo : IData {
-    public int id { private set; get; }
-    public string PrefabPath { private set; get; }
-    public int luxurious { private set; get; }
-    public int APower { private set; get; }
-    public int DPower { private set; get; }
-    public int sellingSkill { private set; get; }
-    public int Price { private set; get; }
+    public int ID;
+    public string PrefabPath;
+    public int Luxurious;
+    public int APower ;
+    public int DPower;
+    public int SellingSkill;
+    public int Price;
 
     public void setData(IDataReader reader)
     {
-        id = reader.GetInt32(0);
+        ID = reader.GetInt32(0);
         PrefabPath = reader.GetString(1);
         APower = reader.GetInt32(2);
         DPower = reader.GetInt32(3);
-        luxurious = reader.GetInt32(4);
-        sellingSkill = reader.GetInt32(5);
+        Luxurious = reader.GetInt32(4);
+        SellingSkill = reader.GetInt32(5);
         Price = reader.GetInt32(6);
     }
 
