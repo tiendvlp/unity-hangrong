@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Data;
 public class FeetInfo : IData {
-    public int ID { private set; get; }
-    public string PrefabPath { private set; get; }
-    public int Luxurious { private set; get; }
-    public int APower { private set; get; }
-    public int DPower { private set; get; }
-    public int SellingSkill { private set; get; }
-    public int Price { private set; get; }
+    public int ID;
+    public string PrefabPath;
+    public int Luxurious;
+    public int APower;
+    public int DPower;
+    public int SellingSkill;
+    public int Price;
 
     public void setData(IDataReader reader)
     {

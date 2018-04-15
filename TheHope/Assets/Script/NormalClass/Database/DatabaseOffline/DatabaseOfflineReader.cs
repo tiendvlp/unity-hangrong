@@ -46,6 +46,8 @@ public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
                     bool.TryParse(reader.GetString(indexColumn), out result);
                     field.SetValue(dataA, result);
                 }
+            } else {
+                Debug.LogWarning("field name (" + field.Name + "): is not match, or is not exist this column with this name" );
             }
         }
     }
