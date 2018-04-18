@@ -5,7 +5,11 @@ using GameSparks;
 using GameSparks.Core;
 using UnityEngine;
 public class ConvertGSToObj {
-	public object fromGSData (GSData gsData) {
+	public T fromGSData<T> (GSData gsData) {
+		if (typeof(T).Name != gsData.GetString("type")) {
+			Debug.LogError("This type of T does not match with type of gsData");
+			return  default(T);
+		}
 		Type objType = Type.GetType (gsData.GetString ("type"));
 		object obj = Activator.CreateInstance (objType);
 		foreach (var typeField in objType.GetFields ()) {
@@ -29,11 +33,11 @@ public class ConvertGSToObj {
 				} else if ((typeField.FieldType == typeof (List<float>) || typeField.FieldType == typeof (float[]))) {
 					typeField.SetValue (obj, (typeField.FieldType == typeof (List<float>)) ? (object) gsData.GetFloatList (typeField.Name) : gsData.GetFloatList (typeField.Name).ToArray ());
 				} else if (typeField.FieldType.IsClass && !typeField.FieldType.IsGenericType && !typeField.FieldType.IsArray) {
-					typeField.SetValue (obj, fromGSData (gsData.GetGSData (typeField.Name)));
+					typeField.SetValue (obj, fromGSData<T> (gsData.GetGSData (typeField.Name)));
 				} else if (!typeField.FieldType.IsArray && typeof (IList).IsAssignableFrom (typeField.FieldType)) {
 					IList genericList = Activator.CreateInstance (typeField.FieldType) as IList;
 					foreach (GSData gsDataElem in gsData.GetGSDataList (typeField.Name)) {
-						object elem = fromGSData (gsDataElem);
+						object elem = fromGSData<T> (gsDataElem);
 						genericList.Add (elem);
 					}
 					typeField.SetValue (obj, genericList);
@@ -42,14 +46,14 @@ public class ConvertGSToObj {
 					Array newArray = Array.CreateInstance (typeField.FieldType.GetElementType (), gsArrayData.Count);
 					object[] objArray = new object[gsArrayData.Count];
 					for (int i = 0; i < gsArrayData.Count; i++) {
-						objArray[i] = fromGSData (gsArrayData[i]);
+						objArray[i] = fromGSData<T> (gsArrayData[i]);
 					}
 					Array.Copy (objArray, newArray, objArray.Length);
 					typeField.SetValue (obj, newArray);
 				}
 			}
 		}
-		return obj;
+		return (T) obj;
 	}
 
 }

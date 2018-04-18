@@ -1,12 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using GameSparks.Core;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour {
 
-	// Use this for initialization
 	void Start () {
-		DatabaseOfflineReader reader = new DatabaseOfflineReader();
-		WeaponInfo wi = reader.getDataById<WeaponInfo>(1);
-	}	
+  }	
+}
+[Serializable]
+class aaa : IData {
+	public string name = "tien dang";
+
+    public string getTable()
+    {
+		return "";
+    }
+
+    public void setData(IDataReader reader)
+    {
+    }
 }

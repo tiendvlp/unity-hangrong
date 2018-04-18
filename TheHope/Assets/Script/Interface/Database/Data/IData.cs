@@ -6,5 +6,4 @@ using Mono.Data.Sqlite;
 public interface  IData {
     void setData(IDataReader reader);
     string getTable();
-    string getPrefabPath();
 }

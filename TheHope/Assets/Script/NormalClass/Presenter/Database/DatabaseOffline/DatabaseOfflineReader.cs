@@ -19,6 +19,7 @@ public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
                 using (IDataReader reader = cmd.ExecuteReader()) {
                     if (reader.Read()) {
                         setData (dataA, reader);
+                        dataA.setData(reader);
                     }
                     reader.Close();
                 }
