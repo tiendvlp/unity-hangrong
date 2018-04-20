@@ -4,30 +4,42 @@ using UnityEngine;
 using System;
 using System.Data;
 using Mono.Data.Sqlite;
-public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
-    private readonly string connectionString = "URI=file:" + Application.dataPath + "/Data/DatabaseOffline/DatabaseOffline.db"; 
+using System.IO;
+using UnityEngine.UI;
+using System.Net;
 
-    public T getDataById<T> (int id) {
+public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
+    private string connectionString;
+    public Text t;
+
+    public DatabaseOfflineReader ()
+    {
+        GetConnectionString getConnect = new GetConnectionString();
+        connectionString = getConnect.getConnectionString();
+    }
+
+    public T getDataById<T>(int id) {
         var constructor = typeof(T).GetConstructors()[0];
         var dataB = constructor.Invoke(null);
-        IData dataA = (IData) dataB;
-        using (IDbConnection dbConnect = new SqliteConnection(connectionString)) {
-            dbConnect.Open();
-            using (IDbCommand cmd = dbConnect.CreateCommand()) {
-                string cmdQuery = "select * from " + dataA.getTable() + " where ID = " + id;
-                cmd.CommandText = cmdQuery;
-                using (IDataReader reader = cmd.ExecuteReader()) {
-                    if (reader.Read()) {
-                        setData (dataA, reader);
-                        dataA.setData(reader);
+        IData dataA = (IData)dataB;
+            using (IDbConnection dbConnect = new SqliteConnection(connectionString))
+            {
+                dbConnect.Open();
+                using (IDbCommand cmd = dbConnect.CreateCommand()) {
+                    string cmdQuery = "select * from " + dataA.getTable() + " where ID = " + id;
+                    cmd.CommandText = cmdQuery;
+                    using (IDataReader reader = cmd.ExecuteReader()) {
+                        if (reader.Read()) {
+                            setData(dataA, reader);
+                            dataA.setData(reader);
+                        }
+                        reader.Close();
                     }
-                    reader.Close();
-                }
-            }
-            dbConnect.Close();
+                    dbConnect.Close();
         }
+    }
         return (T) dataB;
-    } 
+    }
 
     private void setData(IData dataA, IDataReader reader) {
         foreach (var field in dataA.GetType().GetFields()) {
