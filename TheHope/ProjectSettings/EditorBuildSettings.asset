@@ -4,12 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-<<<<<<< HEAD
-    path: Assets/a.unity
-    guid: c1b3d3ffcbc49f14bbdae26fa74355fb
-=======
-    path: Assets/TestAsset/TaiFolders/AdaScene.unity
-    guid: c8f40d2d01055e345a0efa40d56569de
->>>>>>> 398e032508ae269d318c7fe233c0768a8c0cb773
+  m_Scenes: []
