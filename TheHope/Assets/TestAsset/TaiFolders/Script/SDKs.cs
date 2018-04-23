@@ -11,7 +11,6 @@ namespace Facebook.Unity
     public class SDKs : MonoBehaviour
     {
         public Text errText, nameText;
-
         void Start()
         {
             FB.Init();
@@ -31,29 +30,35 @@ namespace Facebook.Unity
                         return;
                     }
                 errText.text = "Success 1";
-                nameText.text = "n: " + result.RawResult;
-                GameSparkLogin(result.AccessToken.ToString());
+
+                nameText.text = "n: " + result.ResultDictionary;
+                GameSparkLogin(result.AccessToken.TokenString);
             });
         }
 
         public void GameSparkLogin (string accessToken)
         {
-            new FacebookConnectRequest().SetAccessToken(accessToken).Send((response) =>
-            {
-                nameText.text = "FUCK U";
-            });
-
-            new RegistrationRequest().SetDisplayName("adminstrator").SetPassword("admin").SetUserName("admins").Send((response) =>
+            new FacebookConnectRequest().SetAccessToken("EAAIQLEaWpE0BAOC3X3ySKJhghrcIHSUFK8LG7dZA7QIjcDtFj2MjNxAgoyi1cdjNyKFkVqP7ZAP7b2ZAbBUZBi6imAhApTYypiF90pva5dTGYLyZCYUH9ZA3o8FGWtFb1cW4cJtALcjOfRtqXDPPQLh37hP2toKCC5KG09eNZBQ4VWbQRzsgZAhpxdPWjDnEZAVJ2ZAy5pCINumjCmZBGeiZC7m3FoDdbUa6NBPNSy0OoGrzX51BRdAQmmbi")
+                .SetCode("")
+                .SetDoNotLinkToCurrentPlayer(false)
+                .SetErrorOnSwitch(false)
+                .SetSwitchIfPossible(false).SetSyncDisplayName(false)
+                .Send((response) =>
             {
                 if (response.HasErrors)
                 {
-                    errText.text = "Res : " + response.Errors.ToString();
+                    if (response.Errors.ToString().Equals("GameSparks.Core.GSData"))
+                    Debug.Log(response.HasErrors + " " + response.Errors.ToString());
+                    return;
                 }
-                errText.text = "Success 3";
-                Debug.Log("ĐỤ MÁ");
+                errText.text = "Success";
+                nameText.text = "Name: " + response.DisplayName ;
             });
-            Debug.Log("ĐỤ MÁ m");
+        }
 
+        public void LogOut ()
+        {
+            FB.LogOut();
         }
 
     }
