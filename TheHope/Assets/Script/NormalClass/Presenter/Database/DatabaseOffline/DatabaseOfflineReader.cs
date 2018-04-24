@@ -14,23 +14,29 @@ public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
 
     public DatabaseOfflineReader ()
     {
-        GetConnectionString getConnect = new GetConnectionString();
-        connectionString = getConnect.getConnectionString();
+
+        WriteDatabase write = new WriteDatabase();
+        connectionString = write.write();
     }
 
     public T getDataById<T>(int id) {
         var constructor = typeof(T).GetConstructors()[0];
         var dataB = constructor.Invoke(null);
         IData dataA = (IData)dataB;
-            using (IDbConnection dbConnect = new SqliteConnection(connectionString))
+        t.text = "start";
+        using (IDbConnection dbConnect = new SqliteConnection(connectionString))
             {
                 dbConnect.Open();
-                using (IDbCommand cmd = dbConnect.CreateCommand()) {
-                    string cmdQuery = "select * from " + dataA.getTable() + " where ID = " + id;
+                t.text = "open";
+            using (IDbCommand cmd = dbConnect.CreateCommand()) {
+                t.text = "cmd";
+                string cmdQuery = "select * from " + dataA.getTable() + " where ID = " + id;
                     cmd.CommandText = cmdQuery;
                     using (IDataReader reader = cmd.ExecuteReader()) {
-                        if (reader.Read()) {
-                            setData(dataA, reader);
+                    t.text = "read";
+                    if (reader.Read()) {
+                        t.text = "read1";
+                        setData(dataA, reader);
                             dataA.setData(reader);
                         }
                         reader.Close();
