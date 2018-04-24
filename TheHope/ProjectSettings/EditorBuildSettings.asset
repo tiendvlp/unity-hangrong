@@ -4,12 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-<<<<<<< HEAD
-    path: Assets/a.unity
-    guid: 3d5bc95867937f84cbd7709e8741d7db
-=======
-    path: Assets/TestAsset/TaiFolders/Scene/TestFBSDK.unity
-    guid: c8f40d2d01055e345a0efa40d56569de
->>>>>>> eb3ba8356f1456616fd8a63533032547eea12f35
+  m_Scenes: []
