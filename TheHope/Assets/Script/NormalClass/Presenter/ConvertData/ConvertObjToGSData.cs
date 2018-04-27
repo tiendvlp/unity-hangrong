@@ -12,7 +12,9 @@ public class ConvertObjToGSData {
 		gsData.Add ("type", obj.GetType ().ToString ());
 
 		foreach (var field in obj.GetType ().GetFields ()) {
-			if (field.FieldType == typeof (string)) {
+            if (field.GetValue(obj) == null) {
+                gsData.AddString(field.Name, null);
+            } else if (field.FieldType == typeof (string)) {
 				gsData.AddString (field.Name, field.GetValue (obj).ToString ());
 			} else if (field.FieldType == typeof (bool)) {
 				gsData.AddBoolean (field.Name, bool.Parse (field.GetValue (obj).ToString ()));
