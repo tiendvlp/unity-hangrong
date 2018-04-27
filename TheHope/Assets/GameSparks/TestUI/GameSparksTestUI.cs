@@ -72,33 +72,6 @@ public class GameSparksTestUI : MonoBehaviour
 	void Start(){
 		GSMessageHandler._AllMessages = HandleGameSparksMessageReceived;
 
-#if (UNITY_PS4 || UNITY_XBOXONE) && !UNITY_EDITOR 
-        if (rectNormalTexture == null)
-        {
-            rectNormalTexture = new Texture2D(1, 1);
-            rectNormalTexture.SetPixel(0, 0, new Color(1.0f, 0.25f, 0.1f, 0.5f));
-            rectNormalTexture.Apply();
-        }
-
-        if (rectClickedTexture == null)
-        {
-            rectClickedTexture = new Texture2D(1, 1);
-            rectClickedTexture.SetPixel(0, 0, new Color(1.0f, 0.8f, 0.25f, 0.65f));
-            rectClickedTexture.Apply();
-        }
-
-        if (rectNormalStyle == null)
-        {
-            rectNormalStyle = new GUIStyle();
-            rectNormalStyle.normal.background = rectNormalTexture;
-        }
-
-        if (rectClickedStyle == null)
-        {
-            rectClickedStyle = new GUIStyle();
-            rectClickedStyle.normal.background = rectClickedTexture;
-        }
-#endif
     }
 	
 	void HandleGameSparksMessageReceived (GSMessage message)

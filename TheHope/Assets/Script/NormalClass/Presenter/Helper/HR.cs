@@ -27,12 +27,53 @@ public class HR {
         public static readonly string HomeStreet = "HomeStreet";
     }
 
-    public class CacheFolder {
-        public static readonly string UserInfo = Application.dataPath + "/Data/Cache/UserInfo";
-        public static readonly string WareHouse = Application.dataPath + "/Data/Cache/WareHouse";
-        public static readonly string Employee = Application.dataPath + "/Data/Cache/Employee";
-        public static readonly string TownStreet = Application.dataPath + "/Data/Cache/TownStreet";
-        public static readonly string HomeStreet = Application.dataPath + "/Data/Cache/HomeStreet";
+    public class CachePath {
+        public class Android_IOS
+        {
+          public static readonly string Folder = Storage.Android_IOS + "/Cache";
+          public static readonly string UserInfo = Folder + "/UserInfo.txt";
+          public static readonly string WareHouse = Folder + "/WareHouse.txt";
+          public static readonly string Employee = Folder + "/Employee.txt";
+          public static readonly string TownStreet = Folder + "/TownStreet.txt";
+          public static readonly string HomeStreet = Folder + "/HomeStreet.txt";
+
+        }
+
+        public class Editor
+        { 
+            public static readonly string Folder = Application.dataPath + "/StreamingAssets/Cache";
+            public static readonly string UserInfo = Application.dataPath + "/StreamingAssets/Cache/651651561.txt";
+            public static readonly string WareHouse = Application.dataPath + "/StreamingAssets/Cache/WareHouse.txt";
+            public static readonly string Employee = Application.dataPath + "/StreamingAssets/Cache/Employee.txt";
+            public static readonly string TownStreet = Application.dataPath + "/StreamingAssets/Cache/TownStreet.txt";
+            public static readonly string HomeStreet = Application.dataPath + "/StreamingAssets/Cache/HomeStreet.txt";
+        }
+    }
+
+    public class DatabaseOfflinePath
+    {
+            public static readonly string Editor = Application.dataPath + "/StreamingAssets/DatabaseOffline/" + "DatabaseOffline.db";
+            public static readonly string Android_IOS = Storage.Android_IOS + "/DatabaseOffline.db";
+    }
+
+    public class Storage {
+        public static readonly string Android_IOS = Application.persistentDataPath;
+    }
+
+    public class StreamingAssets {
+        public static readonly string Android = "jar:file://" + Application.dataPath + "!/assets";
+        public static readonly string IOS = Application.dataPath + "/Raw";
+        public static readonly string Editor = Application.dataPath + "/StreamingAssets";
+    }
+
+    public static string databaseOfflineName = "DatabaseOffline.db";
+    public class CacheFileName
+    {
+        public static readonly string UserInfo = "UserInfo.txt";
+        public static readonly string WareHouse = "WareHouse.txt";
+        public static readonly string Employee = "Employee.txt";
+        public static readonly string TownStreet = "TownStreet.txt";
+        public static readonly string HomeStreet = "HomeStreet.txt";
     }
 
 }
