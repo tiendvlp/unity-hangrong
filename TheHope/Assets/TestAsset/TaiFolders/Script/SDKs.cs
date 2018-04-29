@@ -1,4 +1,6 @@
-﻿
+﻿using GameSparks.Core;
+
+
 namespace Facebook.Unity
 {
     using GameSparks.Api.Requests;
@@ -14,7 +16,11 @@ namespace Facebook.Unity
         void Start()
         {
             FB.Init();
-        }
+			GSRequestData data = new GSRequestData ().AddString("Token", "123");
+			data.AddString ("action", "okaymen");
+			data.AddString ("Token", 450.ToString());
+			Debug.Log (data.JSON);
+		}
 
         public void Login ()
         {

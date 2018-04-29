@@ -1,7 +1,12 @@
 fileFormatVersion: 2
 guid: b82b7b49f2102684792a8cfd15682275
+<<<<<<< HEAD
 labels:
 - gpsr
+=======
+timeCreated: 1524541539
+licenseType: Free
+>>>>>>> 27f95cfcc1aa306920705cb86fb5f464346b8f0c
 PluginImporter:
   externalObjects: {}
   serializedVersion: 2
