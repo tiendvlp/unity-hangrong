@@ -7,8 +7,11 @@ using GameSparks.Api.Requests;
 public class LoginPresenter {
 	private ILoginView view;
 
-
-	public LoginPresenter () {}
+	 delegate void fuck ();
+	 event fuck abc;
+	public LoginPresenter () {
+		
+	}
 
 	public LoginPresenter (ILoginView view) {
 		this.view = view;
