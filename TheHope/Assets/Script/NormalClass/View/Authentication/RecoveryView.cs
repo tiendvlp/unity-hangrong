@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RecoveryView : MonoBehaviour, IRecoveryView {
+public class RecoveryView : MonoBehaviour{
 	public InputField userName, token, newPassword;
 	private RecoveryPresenter presenter;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RegisterView : MonoBehaviour, IRegisterView {
+public class RegisterView : MonoBehaviour{
 	private RegisterPresenter presenter;
 	public InputField userName, password;
 

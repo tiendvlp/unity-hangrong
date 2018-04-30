@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameSparks.Api.Requests;
 
-public class UserInfoCreatingPresenter {
+public class UserInfoCreatingPresenter : IUserInfoCreating {
 	public static string SET_UP_FIRST_USER = "SetupFirstUser";
 	public static string DISPLAY_NAME = "DisplayName";
 	public static string SEX = "Sex";
 	public static string PHONE_NUMBER = "PhoneNumber";
+
+	public delegate void OnFirstLoginFailed(string error);
+	public event OnFirstLoginSuccess onFirstLoginSuccess;
+
+	public delegate void OnFirstLoginSuccess(string displayName);
+	public event OnFirstLoginSuccess onFirstLoginFailed;
 
 	private UserInfoCreatingView view;
 
@@ -19,21 +25,11 @@ public class UserInfoCreatingPresenter {
 
 				if (response.HasErrors)
 				{
-					OnFirstLoginFailed();
+					onFirstLoginFailed(response.Errors.ToString());
 					return;
 				}
 			});
 
-		OnFirstLoginSuccess ();
+		onFirstLoginSuccess (displayName);
 	}
-
-
-	public void OnFirstLoginSuccess () {
-	
-	}
-
-	public void OnFirstLoginFailed () {
-	
-	}
-
 }

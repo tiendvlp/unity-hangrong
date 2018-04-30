@@ -4,30 +4,37 @@ using UnityEngine;
 using Facebook.Unity;
 using GameSparks.Api.Requests;
 
-public class LoginPresenter {
-	private ILoginView view;
+public class LoginPresenter : ILogin{
 
+	private LoginView view;
 
 	public LoginPresenter () {}
 
-	public LoginPresenter (ILoginView view) {
+	public delegate void OnLoginSuccess ();
+	public event OnLoginSuccess onLoginSuccess;
+
+	public delegate void OnLoginFailed (string error);
+	public event OnLoginFailed onLoginFailed;
+
+	public LoginPresenter (LoginView view) {
 		this.view = view;
+		view.onGameSparksLoginButtonClick += GSLogin;
+		view.onFacebookLoginButtonClick += FBLogin;
 	}
 		
 	public void FBLogin () {
 		FB.LogInWithReadPermissions(new List<string>() {"public_profile", "email", "display_name"}, (result) => { 
 			if ((result.Cancelled) || (result.Error != null)) {
-				OnLoginFailed();
+				onLoginFailed(result.Error);
 				return;
 			}
 
 			new FacebookConnectRequest().SetAccessToken(result.AccessToken.TokenString).Send((response) => {
 				if (response.HasErrors) {
-					OnLoginFailed();
+					onLoginFailed(result.Error);
 					return;
 				}
-
-				OnLoginSuccess();
+				onLoginSuccess();
 			});
 		});
 	}
@@ -36,21 +43,10 @@ public class LoginPresenter {
 		new AuthenticationRequest().SetUserName(email).SetPassword(password).Send((response) => {
 			if (response.HasErrors)
 			{
-				OnLoginFailed();
+				onLoginFailed(response.Errors.ToString());
 				return;
 			}
-			OnLoginSuccess();
+			onLoginSuccess();
 		});
 	}
-
-	public void OnLoginSuccess() {
-		view.ProcessUI_LoginSuccess();
-		//...
-	}
-
-	public void OnLoginFailed() {
-		view.ProcessUI_LoginFailed ();
-		//...
-	}
-
 }
