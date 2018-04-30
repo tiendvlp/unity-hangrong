@@ -4,19 +4,30 @@ using GameSparks.Core;
 using UnityEngine;
 
 
-public class RecoveryPresenter {	
+public class RecoveryPresenter : IRecovery {	
 	private string PASSWORD_RECOVERY_REQUEST_ACTION = "passwordRecoveryRequest";
 	private string RESET_PASSWORD_ACTION = "resetPassword";
 	private string ACTION = "action";
 	private string TOKEN = "token";
 	private string ERROR = "error";
 	private string SUCCESS = "success";
-	private IRecoveryView view;
+	private RecoveryView view;
 	private static GSRequestData scriptData;
-	private static string sentEmail;
+	private string sentEmail;
 
+	public delegate void OnRecoverySuccess ();
+	public event OnRecoverySuccess onRecoverySuccess;
 
-	public RecoveryPresenter (IRecoveryView view) {
+	public delegate void OnRecoveryFailed (string error);
+	public event OnRecoveryFailed onRecoveryFailed;
+
+	public delegate void OnResetPasswordSuccess ();
+	public event OnResetPasswordSuccess onResetPasswordSuccess;
+
+	public delegate void OnResetPasswordFailed (string error);
+	public event OnResetPasswordFailed onResetPasswordFailed;
+
+	public RecoveryPresenter (RecoveryView view) {
 		this.view = view;
 	}
 
@@ -27,12 +38,13 @@ public class RecoveryPresenter {
 		new AuthenticationRequest().SetUserName(userName).SetPassword("admin").SetScriptData(scriptData).Send((response) => {
 			if (response.HasErrors)
 			{
-				OnRecoveryAcountFailed();
+				onRecoveryFailed(response.Errors.ToString());
 				return;
 			}
 
 			Debug.Log(response.ScriptData.GetString(ERROR));
-			OnRecoveryAcountSuccess();
+			sentEmail = userName;
+			onRecoverySuccess();
 		});
 	}
 
@@ -41,34 +53,14 @@ public class RecoveryPresenter {
 		scriptData.AddString(ACTION, RESET_PASSWORD_ACTION);
 		scriptData.AddString (TOKEN, token);
 
-		new AuthenticationRequest().SetUserName("admin").SetPassword(newPassword).SetScriptData(scriptData).Send((response) => { 
+		new AuthenticationRequest().SetUserName(sentEmail).SetPassword(newPassword).SetScriptData(scriptData).Send((response) => { 
 			if (response.HasErrors) {
-				OnResetPasswordFailed ();
+				onResetPasswordFailed(response.Errors.ToString());
 				return;
 			}	
 
-			OnResetPasswordSuccess ();
+			onResetPasswordSuccess();
 		});
-	}
-
-	void OnRecoveryAcountSuccess ()
-	{
-		view.ProcessUI_RecoverySuccess ();
-	}
-
-	void OnRecoveryAcountFailed ()
-	{
-		view.ProcessUI_RecoveryFailed ();
-	}
-
-	void OnResetPasswordSuccess ()
-	{
-		view.ProcessUI_ResetPasswordSuccess ();
-	}
-
-	void OnResetPasswordFailed ()
-	{
-		view.ProcessUI_ResetPasswordFailed ();
 	}
 
 }

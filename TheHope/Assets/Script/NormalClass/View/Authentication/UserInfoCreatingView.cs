@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UserInfoCreatingView : MonoBehaviour, IUserInfoCreatingView {
+public class UserInfoCreatingView : MonoBehaviour{
 	public InputField displayName, phoneNumber;
 	public Toggle maleToggle, femaleToggle;
 	private UserInfoCreatingPresenter presenter;

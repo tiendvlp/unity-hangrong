@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameSparks.Api.Requests;
-public class RegisterPresenter {
-	private IRegisterView view;
+public class RegisterPresenter : IRegister {
+	private RegisterView view;
 
-	public RegisterPresenter (IRegisterView view) {
+	public delegate void OnRegisterSuccess ();
+	public event OnRegisterSuccess onRegisterSuccess;
+
+	public delegate void OnRegisterFailed (string error);
+	public event OnRegisterFailed onRegisterFailed;
+
+	public RegisterPresenter (RegisterView view) {
 		this.view = view;
 	}
 
@@ -15,23 +21,13 @@ public class RegisterPresenter {
 			new RegistrationRequest().SetUserName(userName).SetPassword(password).SetDisplayName("admin").Send((response) => {
 				if (response.HasErrors)
 				{
-					OnRegisterFailed();
+					onRegisterFailed(response.Errors.ToString());
 					return;
 				}
 
-				OnRegisterSuccess();
+				onRegisterSuccess();
 			});
 		}
-	}
-
-	public void OnRegisterSuccess() {
-		view.ProcessUI_RegisterSuccess ();
-		//...
-	}
-
-	public void OnRegisterFailed () {
-		view.ProcessUI_RegisterFailed ();
-		//...
 	}
 
 	private bool CheckInputInfo (string userName, string password)
