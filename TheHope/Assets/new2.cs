@@ -8,7 +8,6 @@ public class new2 : MonoBehaviour {
 	void Start () {
 		CachingManager cac = new CachingManager();
         DatabaseOfflineManager mama = new DatabaseOfflineManager();
-        mama.t = GetComponent<Text>();
         mama.writeDatabaseToStorage();
         GetComponent<Text>().text = "write";
         DatabaseOfflinePath p = new DatabaseOfflinePath();
