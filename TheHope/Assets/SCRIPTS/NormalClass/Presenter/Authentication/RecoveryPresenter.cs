@@ -56,7 +56,7 @@ public class RecoveryPresenter : IRecovery {
 	}
 
 	public void ResetPassword (string token, string newPassword) {
-		if (inforCheck.IsValidPassword) {
+		if (inforCheck.IsValidPassword(newPassword)) {
 			scriptData = new GSRequestData ();
 			scriptData.AddString (ACTION, RESET_PASSWORD_ACTION);
 			scriptData.AddString (TOKEN, token);

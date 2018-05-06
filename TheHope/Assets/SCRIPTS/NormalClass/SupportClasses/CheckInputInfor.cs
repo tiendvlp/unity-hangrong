@@ -7,7 +7,7 @@ public class CheckInputInfor {
 
 	public bool IsValidInfor(string userName, string password)
 	{
-		return IsValidUserName(userName) & IsValidPassword(password);
+		return IsValidUserName(userName) && IsValidPassword(password);
 	}
 
 	public bool IsValidUserName (string userName) {
@@ -28,6 +28,8 @@ public class CheckInputInfor {
 				return false;
 			}
 		}
+
+		return true;
 	}
 
 	public bool IsValidPassword(string password) {
@@ -44,6 +46,8 @@ public class CheckInputInfor {
 			error = "Password length must be more than 6";
 			return false;
 		}
+
+		return true;
 	}
 
 	private bool InRange (byte number, byte min, byte max)
