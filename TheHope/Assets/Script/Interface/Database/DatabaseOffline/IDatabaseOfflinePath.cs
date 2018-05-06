@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IReadCache {
-	T read<T> (string nameNonExtension);
+public interface IDatabaseOfflinePath {
+	string getPath ();
 }

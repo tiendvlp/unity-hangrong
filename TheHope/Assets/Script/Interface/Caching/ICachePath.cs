@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICaching {
-	
+public interface ICachePath  {
+	string getPath (string fileNameNonExtension);
 }
