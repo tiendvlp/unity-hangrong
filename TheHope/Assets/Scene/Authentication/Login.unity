@@ -1043,7 +1043,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userName: {fileID: 0}
   password: {fileID: 0}
+  rememberThisAccount: {fileID: 0}
   error_manager: {fileID: 0}
+  isRememberAccount: 0
 --- !u!224 &546703038
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1550,7 +1552,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userName: {fileID: 1326468897}
   password: {fileID: 460951809}
+  rememberThisAccount: {fileID: 0}
   error_manager: {fileID: 122428757}
+  isRememberAccount: 0
 --- !u!4 &998457047
 Transform:
   m_ObjectHideFlags: 0

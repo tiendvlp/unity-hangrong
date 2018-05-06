@@ -9,9 +9,13 @@ public class LoginView : MonoBehaviour {
 	
 	public InputField userName, password;
 
+	public Toggle rememberThisAccount;
+
 	private LoginPresenter loginPresenter;
 
 	public ErrorView error_manager;
+
+	public bool isRememberAccount;
 
 
 	void Start () {
@@ -22,6 +26,7 @@ public class LoginView : MonoBehaviour {
 	}
 
 	public void OnLoginSuccess () {
+		isRememberAccount = rememberThisAccount.isOn;
 		Debug.Log ("Login Success");
 	}
 
@@ -31,6 +36,7 @@ public class LoginView : MonoBehaviour {
 	}
 
 	public void LoginWithGameSparks () {
+		
 		loginPresenter.GSLogin (userName.text, password.text);
 	}
 
