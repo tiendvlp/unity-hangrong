@@ -4,14 +4,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using UnityEngine;
-public class WriteCache : IWriteCache, ICaching
+public class WriteCache : IWriteCache
 {
-    public void write(object data, string cacheFolder, string nameNonExtension)
-    {
-        Stream stream = File.Open(cacheFolder + "/" + nameNonExtension, FileMode.Create);
-		BinaryFormatter formatter = new BinaryFormatter();
-		formatter.Serialize(stream, data);
-		stream.Close();
+   private CachePath path;
+   public WriteCache () {
+           path = new CachePath();
+   }
+
+    public void write (string FileNameNonExtension, object data) {
+        using (FileStream write = File.Open(path.getPath(FileNameNonExtension), FileMode.OpenOrCreate)) {
+                BinaryFormatter binary = new BinaryFormatter();
+                binary.Serialize(write, data);
+        }
     }
 }

@@ -8,34 +8,24 @@ using System.IO;
 using UnityEngine.UI;
 using System.Net;
 
-public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
+public class DatabaseOfflineReader : IDatabaseOfflineReader {
     private string connectionString;
-    public Text t;
-
-    public DatabaseOfflineReader ()
+    public DatabaseOfflineReader (string connectionString)
     {
-
-        WriteDatabase write = new WriteDatabase();
-        connectionString = write.write();
+        this.connectionString = "URI=file:" + connectionString;
     }
-
     public T getDataById<T>(int id) {
         var constructor = typeof(T).GetConstructors()[0];
         var dataB = constructor.Invoke(null);
         IData dataA = (IData)dataB;
-        t.text = "start";
         using (IDbConnection dbConnect = new SqliteConnection(connectionString))
             {
                 dbConnect.Open();
-                t.text = "open";
             using (IDbCommand cmd = dbConnect.CreateCommand()) {
-                t.text = "cmd";
                 string cmdQuery = "select * from " + dataA.getTable() + " where ID = " + id;
                     cmd.CommandText = cmdQuery;
                     using (IDataReader reader = cmd.ExecuteReader()) {
-                    t.text = "read";
-                    if (reader.Read()) {
-                        t.text = "read1";
+                        if (reader.Read()) {
                         setData(dataA, reader);
                             dataA.setData(reader);
                         }

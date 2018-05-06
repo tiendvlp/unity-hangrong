@@ -6,17 +6,13 @@ using GameSparks.Api.Requests;
 
 public class LoginPresenter : ILogin{
 
-<<<<<<< HEAD
-	 delegate void fuck ();
-	 event fuck abc;
+
+
 	public LoginPresenter () {
 		
 	}
-=======
-	private LoginView view;
 
-	public LoginPresenter () {}
->>>>>>> 9ecc9449439084201fb42a076b54cfd99b8ab7e6
+	private LoginView view;
 
 	public delegate void OnLoginSuccess ();
 	public event OnLoginSuccess onLoginSuccess;
