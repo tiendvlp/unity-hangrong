@@ -27,42 +27,54 @@ public class RecoveryPresenter : IRecovery {
 	public delegate void OnResetPasswordFailed (string error);
 	public event OnResetPasswordFailed onResetPasswordFailed;
 
+	private CheckInputInfor inforCheck = new CheckInputInfor();
+
 	public RecoveryPresenter (RecoveryView view) {
 		this.view = view;
 	}
 
 	public void StartRecovery (string userName) {
-		scriptData = new GSRequestData();
-		scriptData.AddString(ACTION, PASSWORD_RECOVERY_REQUEST_ACTION);
+		if (inforCheck.IsValidUserName (userName)) {
+			scriptData = new GSRequestData ();
+			scriptData.AddString (ACTION, PASSWORD_RECOVERY_REQUEST_ACTION);
 
-		new AuthenticationRequest().SetUserName(userName).SetPassword("").SetScriptData(scriptData).Send((response) => {
-			GSData error = (GSData) response.JSONData["error"];
-			string action = error.GetString("action");
-			if (action != "Complete") {
-				onRecoveryFailed(action);
-				return;
-			}
+			new AuthenticationRequest ().SetUserName (userName).SetPassword ("").SetScriptData (scriptData).Send ((response) => {
+				GSData error = (GSData)response.JSONData ["error"];
+				string action = error.GetString ("action");
+				if (action != "Complete") {
+					onRecoveryFailed (action);
+					return;
+				}
 
-			sentEmail = userName;
-			onRecoverySuccess();
-		});
+				sentEmail = userName;
+				onRecoverySuccess ();
+			});
+		} else {
+			onRecoveryFailed (inforCheck.error);
+		}
+
 	}
 
 	public void ResetPassword (string token, string newPassword) {
-		scriptData = new GSRequestData();
-		scriptData.AddString(ACTION, RESET_PASSWORD_ACTION);
-		scriptData.AddString (TOKEN, token);
+		if (inforCheck.IsValidPassword) {
+			scriptData = new GSRequestData ();
+			scriptData.AddString (ACTION, RESET_PASSWORD_ACTION);
+			scriptData.AddString (TOKEN, token);
 
-		new AuthenticationRequest().SetUserName(sentEmail).SetPassword(newPassword).SetScriptData(scriptData).Send((response) => { 
-			GSData error = (GSData) response.JSONData["error"];
-			string action = error.GetString("action");
-			if (action != "complete. Error: null") {
-				onResetPasswordFailed(action);
-				return;
-			}
+			new AuthenticationRequest ().SetUserName (sentEmail).SetPassword (newPassword).SetScriptData (scriptData).Send ((response) => { 
+				GSData error = (GSData)response.JSONData ["error"];
+				string action = error.GetString ("action");
+				if (action != "complete. Error: null") {
+					onResetPasswordFailed (action);
+					return;
+				}
 
-			onResetPasswordSuccess();
-		});
+				onResetPasswordSuccess ();
+			});
+		} else {
+			onResetPasswordFailed (inforCheck.error);
+		}
+
 	}
 
 }

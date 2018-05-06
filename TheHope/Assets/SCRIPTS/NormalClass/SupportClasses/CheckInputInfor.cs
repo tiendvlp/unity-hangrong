@@ -7,16 +7,13 @@ public class CheckInputInfor {
 
 	public bool IsValidInfor(string userName, string password)
 	{
+		return IsValidUserName(userName) & IsValidPassword(password);
+	}
+
+	public bool IsValidUserName (string userName) {
 		// Check if the userName is Null
 		if ((userName.Equals("")) || (userName.Equals(null)) || !(userName.Contains("@"))) {
 			error = "Email not specified";
-			return false;
-		}
-
-		// Check if the password is Null
-		if ((password.Equals("")) || (password.Equals(null)))
-		{
-			error = "Password field is empty. Please check again";
 			return false;
 		}
 
@@ -31,6 +28,15 @@ public class CheckInputInfor {
 				return false;
 			}
 		}
+	}
+
+	public bool IsValidPassword(string password) {
+		// Check if the password is Null
+		if ((password.Equals("")) || (password.Equals(null)))
+		{
+			error = "Password field is empty. Please check again";
+			return false;
+		}
 
 		// Check if password length is less than 6
 		if (password.Length < 6)
@@ -38,10 +44,7 @@ public class CheckInputInfor {
 			error = "Password length must be more than 6";
 			return false;
 		}
-
-		return true;
 	}
-
 
 	private bool InRange (byte number, byte min, byte max)
 	{
@@ -49,5 +52,6 @@ public class CheckInputInfor {
 
 		return false;
 	}		
+
 
 }
