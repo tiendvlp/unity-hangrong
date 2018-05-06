@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LoginView : MonoBehaviour {
 	public InputField userName, password;
 	private LoginPresenter loginPresenter;
 
-	public delegate void OnLoginGameSparksButtonClick(string userName, string password);
-	public event OnLoginGameSparksButtonClick onGameSparksLoginButtonClick;
-
-	public delegate void OnLoginFacebookButtonClick();
-	public event OnLoginFacebookButtonClick onFacebookLoginButtonClick;
 
 	void Start () {
 		loginPresenter = new LoginPresenter (this);
@@ -20,18 +16,27 @@ public class LoginView : MonoBehaviour {
 	}
 
 	public void OnLoginSuccess () {
-	
+		Debug.Log ("Login Success");
 	}
 
 	public void OnLoginFailed (string error) {
-
+		Debug.Log ("Error: " + error);
 	}
 
-	public void FacebookLogin_ButtonClick () {
-		onFacebookLoginButtonClick ();
+	public void LoginWithGameSparks () {
+		loginPresenter.GSLogin (userName.text, password.text);
 	}
 
-	public void GameSparksLogin_ButtonClick () {
-		onGameSparksLoginButtonClick (userName.text, password.text);
+	public void LoginWithFacebook () {
+		loginPresenter.FBLogin ();
 	}
+
+	public void Register () {
+		SceneManager.LoadScene ("Register");
+	}
+
+	public void Recovery () {
+		SceneManager.LoadScene ("Recovery");
+	}
+
 }

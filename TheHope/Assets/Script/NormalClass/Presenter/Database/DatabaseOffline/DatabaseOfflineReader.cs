@@ -10,7 +10,7 @@ using System.Net;
 
 public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
     private string connectionString;
-    public Text t;
+    //public Text t;
 
     public DatabaseOfflineReader ()
     {
@@ -23,19 +23,19 @@ public class DatabaseOfflineReader : IDatabaseOfflineReader, IDatabaseOffline {
         var constructor = typeof(T).GetConstructors()[0];
         var dataB = constructor.Invoke(null);
         IData dataA = (IData)dataB;
-        t.text = "start";
+        //t.text = "start";
         using (IDbConnection dbConnect = new SqliteConnection(connectionString))
             {
                 dbConnect.Open();
-                t.text = "open";
+               // t.text = "open";
             using (IDbCommand cmd = dbConnect.CreateCommand()) {
-                t.text = "cmd";
+               // t.text = "cmd";
                 string cmdQuery = "select * from " + dataA.getTable() + " where ID = " + id;
                     cmd.CommandText = cmdQuery;
                     using (IDataReader reader = cmd.ExecuteReader()) {
-                    t.text = "read";
+                 //   t.text = "read";
                     if (reader.Read()) {
-                        t.text = "read1";
+                   //     t.text = "read1";
                         setData(dataA, reader);
                             dataA.setData(reader);
                         }

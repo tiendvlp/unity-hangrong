@@ -27,9 +27,9 @@ public class User {
 
 		public string linkToFBAccount;
 
-		public int aPower;
+		public int Apower;
 
-		public int dPower;
+		public int Dpower;
 
 		public Equipment currentEquipment;
 

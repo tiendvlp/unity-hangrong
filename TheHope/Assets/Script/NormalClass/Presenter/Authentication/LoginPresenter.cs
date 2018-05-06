@@ -6,17 +6,7 @@ using GameSparks.Api.Requests;
 
 public class LoginPresenter : ILogin{
 
-<<<<<<< HEAD
-	 delegate void fuck ();
-	 event fuck abc;
-	public LoginPresenter () {
-		
-	}
-=======
-	private LoginView view;
-
-	public LoginPresenter () {}
->>>>>>> 9ecc9449439084201fb42a076b54cfd99b8ab7e6
+	public LoginView view;
 
 	public delegate void OnLoginSuccess ();
 	public event OnLoginSuccess onLoginSuccess;
@@ -26,9 +16,9 @@ public class LoginPresenter : ILogin{
 
 	public LoginPresenter (LoginView view) {
 		this.view = view;
-		view.onGameSparksLoginButtonClick += GSLogin;
-		view.onFacebookLoginButtonClick += FBLogin;
 	}
+
+	public LoginPresenter () {}
 		
 	public void FBLogin () {
 		FB.LogInWithReadPermissions(new List<string>() {"public_profile", "email", "display_name"}, (result) => { 
