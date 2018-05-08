@@ -1,0 +1,214 @@
+fileFormatVersion: 2
+guid: 3c6e305c2fe5d824895d22777f8223b3
+timeCreated: 1525326351
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: BoySkeleton_0
+    21300002: BoySkeleton_1
+    21300004: BoySkeleton_2
+    21300006: BoySkeleton_3
+    21300008: BoySkeleton_4
+    21300010: BoySkeleton_5
+    21300012: BoySkeleton_6
+    21300014: BoySkeleton_7
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BoySkeleton_0
+      rect:
+        serializedVersion: 2
+        x: 184.58437
+        y: 268
+        width: 62.415634
+        height: 136.2186
+      alignment: 9
+      pivot: {x: 0.5033295, y: 0.49552703}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoySkeleton_1
+      rect:
+        serializedVersion: 2
+        x: 267.50494
+        y: 282.5607
+        width: 106.12973
+        height: 131.4393
+      alignment: 9
+      pivot: {x: 0.49463102, y: 0.51688725}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoySkeleton_2
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 390
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoySkeleton_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 182
+        width: 148
+        height: 153
+      alignment: 9
+      pivot: {x: 0.48310813, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoySkeleton_4
+      rect:
+        serializedVersion: 2
+        x: 446.01398
+        y: 263.34265
+        width: 60.986023
+        height: 125.427216
+      alignment: 9
+      pivot: {x: 0.52448124, y: 0.5194834}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoySkeleton_5
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 206
+        width: 71
+        height: 51
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoySkeleton_6
+      rect:
+        serializedVersion: 2
+        x: 187.73305
+        y: 0
+        width: 52.63861
+        height: 168.37419
+      alignment: 9
+      pivot: {x: 0.5464991, y: 0.5553108}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: BoySkeleton_7
+      rect:
+        serializedVersion: 2
+        x: 397.24142
+        y: 3
+        width: 56.758575
+        height: 198
+      alignment: 9
+      pivot: {x: 0.5154917, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 99963786094261
+  assetBundleName: 
+  assetBundleVariant: 

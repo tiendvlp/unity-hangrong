@@ -9,6 +9,7 @@ using System.IO.Compression;
 using Ionic.Zip;
 
 public class new2 : MonoBehaviour {
+<<<<<<< HEAD
     public Text text;
     void Start() {
         GetData getData = new GetData();
@@ -55,5 +56,19 @@ public class new2 : MonoBehaviour {
         
     }
 
+=======
+	public Text text;
+	void Start () {
+		CachingManager cac = new CachingManager();
+        DatabaseOfflineManager mama = new DatabaseOfflineManager();
+        mama.writeDatabaseToStorage();
+        GetComponent<Text>().text = "write";
+        DatabaseOfflinePath p = new DatabaseOfflinePath();
+        GetComponent<Text>().text =  mama.get<WeaponInfo>(1).PrefabPath + "";
+        cac.save("Fuckyou2", new ditmeem());       
+		ditmeem d = cac.get<ditmeem>("Fuckyou2");
+	}
+	
+>>>>>>> 4f32c0b0be3c674efb6f7e4fd7bdcbf68e527165
 }
 
