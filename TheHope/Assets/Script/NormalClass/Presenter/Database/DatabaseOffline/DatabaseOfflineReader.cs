@@ -7,6 +7,7 @@ using Mono.Data.Sqlite;
 using System.IO;
 using UnityEngine.UI;
 using System.Net;
+using System.Text;
 
 public class DatabaseOfflineReader : IDatabaseOfflineReader {
     private string connectionString;
@@ -18,9 +19,17 @@ public class DatabaseOfflineReader : IDatabaseOfflineReader {
         var constructor = typeof(T).GetConstructors()[0];
         var dataB = constructor.Invoke(null);
         IData dataA = (IData)dataB;
-        using (IDbConnection dbConnect = new SqliteConnection(connectionString))
+        using (SqliteConnection dbConnect = new SqliteConnection(connectionString))
             {
-                dbConnect.Open();
+            byte[] b2 = new byte[1024];
+            byte[] b = Encoding.ASCII.GetBytes("1234");
+            for (int i = 0; i < b.Length; i ++)
+            {
+                b2[i] = b[i];
+            }
+            //dbConnect.SetPassword("1234");
+            //dbConnect.SetPassword(b2);
+            //dbConnect.Open();
             using (IDbCommand cmd = dbConnect.CreateCommand()) {
                 string cmdQuery = "select * from " + dataA.getTable() + " where ID = " + id;
                     cmd.CommandText = cmdQuery;

@@ -14,12 +14,3 @@ public class New : MonoBehaviour {
     }
 	
 }
-[Serializable]
-public class ditmeem
-{
-    public string name = "didi";
-    public string properties = "cave";
-    public string love = "tiendang";
-    public string fuckyou;
-    public List<string> ls = new List<string>(100);
-}
